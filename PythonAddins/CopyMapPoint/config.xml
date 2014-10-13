@@ -1,0 +1,12 @@
+<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Name>CopyMapPoint</Name><AddInID>{57232696-3ea4-4aa5-9444-5c311247c607}</AddInID><Description>Copies a map point in decimal, minutes, seconds.</Description><Version>0.1</Version><Image>Images\gispd.png</Image><Author>JPardy</Author><Company>GIS Professional Development</Company><Date>10/13/2014</Date><Targets><Target name="Desktop" version="10.2" /></Targets><AddIn language="PYTHON" library="CopyMapPoint_addin.py" namespace="CopyMapPoint_addin"><ArcMap>
+    <Commands>
+        <Tool caption="CopyMapPoint" category="CopyMapPoint" class="CopyMapPoint" id="CopyMapPoint_addin.copy_map_point" image="Images\PointDisplay16.png" message="Copies the map location as decimal, minutes, seconds." tip="Copies the map location as DMS"><Help heading="Copies the map point">Copies the map location as decimal, minutes, seconds to the clip board.</Help></Tool>
+        </Commands>
+    <Extensions>
+        </Extensions>
+    <Toolbars>
+        <Toolbar caption="Map Tools" category="CopyMapPoint" id="CopyMapPoint_addin.maptoolstoolbar" showInitially="true"><Items><Tool refID="CopyMapPoint_addin.copy_map_point" /></Items></Toolbar>
+        </Toolbars>
+    <Menus>
+        </Menus>
+    </ArcMap></AddIn></ESRI.Configuration>
