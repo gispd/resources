@@ -1,5 +1,8 @@
 """CopyMapPoint ArcMap Tool"""
+import functools
 import os
+import threading
+import webbrowser
 import arcpy
 
 
@@ -18,6 +21,17 @@ def dd_to_dms(dd):
     return int(degrees), int(minutes), seconds
 
 
+def run_in_other_thread(function):
+    """A decorator that will run its wrapped function in a new thread."""
+    # functool.wraps will copy over the docstring and some other metadata from the original function
+    @functools.wraps(function)
+    def fn_(*args, **kwargs):
+        thread = threading.Thread(target=function, args=args, kwargs=kwargs)
+        thread.start()
+        thread.join()
+    return fn_
+
+
 class CopyMapPoint(object):
     """Implementation for CopyMapPoint_addin.copy_map_point (Tool)"""
     def __init__(self):
@@ -25,10 +39,7 @@ class CopyMapPoint(object):
         self.cursor = 3
 
     def onMouseDownMap(self, x, y, button, shift):
-        """Copies the map's x,y location to the clip board
-        in degrees, minutes, seconds. These coordinates can be copied into
-        maps.google.com.
-        """
+        """Copies map x,y to the clip board in degrees, minutes, seconds."""
         mxd = arcpy.mapping.MapDocument('current')
         map_sr = mxd.activeDataFrame.spatialReference
         map_point = arcpy.PointGeometry(arcpy.Point(x, y), map_sr)
@@ -50,3 +61,6 @@ class CopyMapPoint(object):
         x_dms = dd_to_dms(wgs84_pt.firstPoint.X)
         y_dms = dd_to_dms(wgs84_pt.firstPoint.Y)
         add_to_clip_board("""{} {} {}{}  {} {} {}{}""".format(x_dms[0], x_dms[1], x_dms[2], east_or_west, y_dms[0], y_dms[1], y_dms[2], south_or_north))
+        # Our new wrapped versions of os.startfile and webbrowser.open startfile = run_in_other_thread(os.startfile)
+        open_browser = run_in_other_thread(webbrowser.open)
+        open_browser("www.maps.google.com")
