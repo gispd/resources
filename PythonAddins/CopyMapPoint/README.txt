@@ -20,6 +20,7 @@ makeaddin.py : Running this script to creates or overwrites a .esriaddin file fr
                Optionally, you can copy this file to a well-known folder and use the AddIn manager in ArcMap to point to this location.
 
 config.xml   : The AddIn configuration file containing the CopyMapPoint project properties and AddIn tool properties.
+               This AddIn is for ArcGIS 10.2. To work in ArcGIS 10.1, change the ArcGIS version number to 10.1 and re-create the .esriaddin file.
 
 Images/*     : All UI images for the project (icons, images for buttons, 
                etc)
