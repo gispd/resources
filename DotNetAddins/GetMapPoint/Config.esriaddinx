@@ -1,0 +1,27 @@
+﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>GISPD-Get Map Point</Name>
+  <AddInID>{49c431d8-8703-4cb6-b1e3-007b037e9fe8}</AddInID>
+  <Description>Get lat/long string for clicked point and put it into the Windows paste buffer</Description>
+  <Version>1.0</Version>
+  <Image>Images\GetMapPoint_1.png</Image>
+  <Author>David A. Howes</Author>
+  <Company>GISPD.com</Company>
+  <Date>10/20/2014</Date>
+  <Targets>
+    <Target name="Desktop" version="10.2" />
+  </Targets>
+  <AddIn language="CLR" library="GetMapPoint.dll" namespace="GetMapPoint">
+    <ArcMap>
+      <Commands>
+        <Tool id="GetMapPoint_GetMapPoint" class="GetMapPoint" message="Get lat/long string for clicked point and put it into the Windows paste buffer" caption="GISPD-Get Map Point" tip="GISPD-Get Map Point" category="Add-In Controls" image="Images\GetMapPoint.png" />
+      </Commands>
+      <Toolbars>
+        <Toolbar id="GetMapPoint_Get_Map_Point" caption="GISPD-Get Map Point" showInitially="false">
+          <Items>
+            <Tool refID="GetMapPoint_GetMapPoint" />
+          </Items>
+        </Toolbar>
+      </Toolbars>
+    </ArcMap>
+  </AddIn>
+</ESRI.Configuration>
